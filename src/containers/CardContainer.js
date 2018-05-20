@@ -7,7 +7,7 @@ import Card from '../components/Card';
 
 function mergeProps(stateProps, dispatchProps, ownProps) {
   const { selectCard, deselectCard, turnCard } = dispatchProps;
-  const { selectedCard, turned } = stateProps;
+  const { selectedCard, turned, cardBackgroundColor, cardBackgroundImage } = stateProps;
 
   return {
     onClickCard: selectCard,
@@ -15,11 +15,15 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     onClickTurnCard: turnCard,
     turned,
     selected: ownProps.children === selectedCard,
-    ...ownProps
+    ...ownProps,
+    cardBackgroundColor,
+    cardBackgroundImage
   };
 }
 const mapStateToProps = state => ({
   selectedCard: state.selectedCard,
-  turned: state.turned
+  turned: state.turned,
+  cardBackgroundImage: state.cardBackgroundImage,
+  cardBackgroundColor: state.cardBackgroundColor
 });
 export default connect(mapStateToProps, actions, mergeProps)(Card);

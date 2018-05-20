@@ -1,10 +1,18 @@
-import { handleActions } from 'redux-actions';
-import * as types from './actionTypes';
+import { handleActions } from "redux-actions";
+import * as types from "./actionTypes";
 
 const defaultState = {
   selectedCard: undefined,
   turned: false,
-  title: 'Test title'
+  title: "Test title",
+  backgroundColor: "#666",
+  cardFrontBackgroundColor: "#fff",
+  cardFrontFontColor: "#000",
+  cardBackgroundImage: undefined,
+  cardBackgroundColor: "#000",
+  numberOfCards: 9,
+  showInfinityCard: true,
+  showTShirtSizingCards: true
 };
 
 export default handleActions(
