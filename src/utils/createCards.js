@@ -5,16 +5,25 @@ const isHalfy = value => value === 0.5;
 
 export default (
   cards,
-  noZero,
-  noHalfy,
+  showZeroCard,
+  showHalfyCard,
   showInfinityCard,
   showTShirtSizingCards
 ) => {
-  const newSetOfCards = fibonacci(cards).filter(
-    (result, index) => fibonacci(cards).indexOf(result) === index
-  );
+  const unFilteredCardAmount = cards + !showZeroCard + !showHalfyCard;
+  const maxCards = showTShirtSizingCards
+    ? showInfinityCard
+      ? cards + 6
+      : cards + 5
+    : cards;
+  const newSetOfCards = fibonacci(unFilteredCardAmount)
+    .filter(
+      (result, index) =>
+        fibonacci(unFilteredCardAmount).indexOf(result) === index
+    )
+    .filter(result => !(showZeroCard === false && isZero(result)));
 
-  newSetOfCards.push(0.5); // Add halfy
+  if (showHalfyCard) newSetOfCards.push(0.5); // Add halfy
   newSetOfCards.sort((a, b) => a - b); // Sort numeric
 
   if (showTShirtSizingCards) {
@@ -26,9 +35,5 @@ export default (
   }
   if (showInfinityCard) newSetOfCards.push("∞");
 
-  newSetOfCards
-    .filter(result => noZero && isZero(result))
-    .filter(result => noHalfy && isHalfy(result));
-
-  return newSetOfCards;
+  return newSetOfCards.filter((result, index) => index < maxCards);
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import CardFront from "./CardFront";
-import CardBack from "./CardBack";
+import CardFrontContainer from "../containers/CardFrontContainer";
+import CardBackContainer from "../containers/CardBackContainer";
 
 const Card = ({
   children,
@@ -10,9 +10,7 @@ const Card = ({
   onClickDeselectCard,
   onClickTurnCard,
   selected,
-  turned,
-  cardBackgroundImage,
-  cardBackgroundColor
+  turned
 }) => (
   <StyledCard>
     <FlipperContainer
@@ -28,15 +26,12 @@ const Card = ({
       }}
     >
       <Flipper turned={turned} selected={selected}>
-        <CardFront>
+        <CardFrontContainer>
           <CardNumber turned={turned} selected={selected}>
             {children === 0.5 ? "½" : children}
           </CardNumber>
-        </CardFront>
-        <CardBack
-          cardBackgroundColor={cardBackgroundColor}
-          cardBackgroundImage={cardBackgroundImage}
-        />
+        </CardFrontContainer>
+        <CardBackContainer />
       </Flipper>
     </FlipperContainer>
   </StyledCard>
@@ -78,7 +73,7 @@ const StyledCard = styled.div`
   width: 20vw;
   height: 25vw;
   justify-content: center;
-  margin: 0 2vw 4vw;
+  margin: 0 6vw 4vw;
 `;
 
 const CardNumber = styled.div`

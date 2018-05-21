@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 
-import AppBar from "./AppBar";
 import CardCollectionContainer from "../containers/CardCollectionContainer";
+import SettingsPaneContainer from "../containers/SettingsPaneContainer";
+import AppBarContainer from "../containers/AppBarContainer";
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +11,13 @@ class App extends Component {
 
   componentDidMount() {
     // eslint-disable-next-line
-    // global && global.screen && global.screen.orientation && global.screen.orientation.lock && global.screen.orientation.lock('portrait');
+    try {
+      global &&
+        global.screen &&
+        global.screen.orientation &&
+        global.screen.orientation.lock &&
+        global.screen.orientation.lock("portrait");
+    } catch (e) {}
   }
 
   render() {
@@ -21,12 +27,14 @@ class App extends Component {
         style={{
           height: "100vh",
           width: "100vw",
+          paddingTop: "48px",
           background: this.props.backgroundColor,
           overflowY: "auto"
         }}
       >
-        <AppBar />
+        <AppBarContainer />
         <CardCollectionContainer />
+        <SettingsPaneContainer />
       </div>
     );
   }

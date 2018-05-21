@@ -5,16 +5,16 @@ import CardContainer from "../containers/CardContainer";
 
 const CardCollection = ({
   numberOfCards,
-  noZero,
-  noHalfy,
+  showZeroCard,
+  showHalfyCard,
   showInfinityCard,
   showTShirtSizingCards
 }) => (
   <StyledCardHolder>
     {createCards(
       numberOfCards,
-      noZero,
-      noHalfy,
+      showZeroCard,
+      showHalfyCard,
       showInfinityCard,
       showTShirtSizingCards
     ).map((result, index) => (
@@ -27,8 +27,7 @@ const StyledCardHolder = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
-  justify-content: space-between;
-  padding: 4vh 4vw;
+  justify-content: start;
 `;
 
 export default CardCollection;

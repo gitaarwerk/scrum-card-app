@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import App from "../components/App";
@@ -14,4 +12,5 @@ function mergeProps(stateProps) {
 const mapStateToProps = state => ({
   backgroundColor: state.backgroundColor
 });
-export default connect(mapStateToProps)(App);
+
+export default connect(mapStateToProps, {})(App);

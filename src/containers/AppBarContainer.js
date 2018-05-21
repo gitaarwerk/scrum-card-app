@@ -1,5 +1,3 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import * as actions from "../actionCreators";
@@ -9,8 +7,10 @@ function mergeProps(stateProps, dispatchProps) {
   const { toggleSettings } = dispatchProps;
 
   return {
-    onClickToggleSettings: toggleSettings
+    toggleSettings
   };
 }
 
-export default connect({}, actions)(AppBar);
+const mapStateToProps = state => ({});
+
+export default connect(mapStateToProps, actions)(AppBar);
