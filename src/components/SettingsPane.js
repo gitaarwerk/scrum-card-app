@@ -185,9 +185,6 @@ const SettingsPane = ({
                 onDrop={onDropImageUpload}
                 name="uploadBackgroundImage"
                 title="Click to upload an image"
-                style={{
-                  width: "auto"
-                }}
               />
             )}
           </FormGroup>

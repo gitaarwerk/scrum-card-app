@@ -14,8 +14,11 @@ var offlineFundamentals = [
   "./favicon.ico",
   "./index.html",
   "./manifest.json",
-  "./static/js/bundje.js"
-];
+  "./static/css/main.4cd800d8.css",
+  "./static/css/main.4cd800d8.css.map",
+  "./static/js/main.908479bb.js",
+  "./static/js/main.908479bb.js.map"
+}
 
 /* The install event fires when the service worker is first installed.
    You can use this event to prepare the service worker to be able to serve
