@@ -1,11 +1,9 @@
 "use strict";
 
-console.log("WORKER: executing.");
-
 /* A version number is useful when updating the worker logic,
    allowing you to remove outdated cache entries during the update.
 */
-var version = "v2::";
+var version = "v1::";
 
 /* These resources will be downloaded and cached by the service worker
    during the installation process. If any resource fails to be downloaded,
@@ -24,7 +22,6 @@ var offlineFundamentals = [
    files while visitors are offline.
 */
 self.addEventListener("install", function(event) {
-  console.log("WORKER: install event in progress.");
   /* Using event.waitUntil(p) blocks the installation process on the provided
      promise. If the promise is rejected, the service worker won't be installed.
   */
@@ -45,9 +42,7 @@ self.addEventListener("install", function(event) {
         */
         return cache.addAll(offlineFundamentals);
       })
-      .then(function() {
-        console.log("WORKER: install completed");
-      })
+      .then(function() {})
   );
 });
 
@@ -57,8 +52,6 @@ self.addEventListener("install", function(event) {
    CSS resources, fonts, any images, etc.
 */
 self.addEventListener("fetch", function(event) {
-  console.log("WORKER: fetch event in progress.");
-
   /* We should only cache GET requests, and deal with the rest of method in the
      client-side, by handling failed POST,PUT,PATCH,etc. requests.
   */
