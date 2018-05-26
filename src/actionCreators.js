@@ -25,3 +25,9 @@ export const updateCardFrontBackgroundColor = create(
 export const updateCardFrontFontBackgroundColor = create(
   types.UPDATE_CARD_FRONT_FONT_COLOR
 );
+
+export const uploadBackgroundImage = create(types.UPLOAD_BACKGROUND_IMAGE);
+export const uploadBackgroundImageFailure = create(
+  types.UPLOAD_BACKGROUND_IMAGE_FAILURE
+);
+export const removeBackgroundImage = create(types.REMOVE_BACKGROUND_IMAGE);

@@ -15,8 +15,12 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Button from "@material-ui/core/Button";
 
 import styled from "styled-components";
+
+import Dropzone from "react-dropzone";
 
 const SettingsPane = ({
   onClickToggleSettings,
@@ -39,7 +43,9 @@ const SettingsPane = ({
   cardFrontBackgroundColor,
   cardFrontFontColor,
   cardBackgroundImage,
-  cardBackgroundColor
+  cardBackgroundColor,
+  onDropImageUpload,
+  removeBackgroundImage
 }) => (
   <Drawer anchor="right" open={isOpen}>
     <div style={{ padding: "16vw 2vw 2vw", height: "100vw" }}>
@@ -129,15 +135,7 @@ const SettingsPane = ({
             />
           </FormGroup>
           <FormGroup>
-            <h3>Card background color</h3>
-            <ChromePicker
-              color={cardBackgroundColor}
-              onChangeComplete={onChangeUpdateCardBackBackgroundColor}
-              style={colorPickerStyle}
-            />
-          </FormGroup>
-          <FormGroup>
-            <h3>Front font color</h3>
+            <h3>Card front text color</h3>
             <ChromePicker
               color={cardFrontFontColor}
               onChangeComplete={onChangeUpdateCardFrontFontBackgroundColor}
@@ -145,18 +143,76 @@ const SettingsPane = ({
             />
           </FormGroup>
           <FormGroup>
-            <h3>Front background color</h3>
+            <h3>Card front background color</h3>
             <ChromePicker
               color={cardFrontBackgroundColor}
               onChangeComplete={onChangeUpdateCardFrontBackgroundColor}
               style={colorPickerStyle}
             />
           </FormGroup>
+          <FormGroup>
+            <h3>Card back background color</h3>
+            <ChromePicker
+              color={cardBackgroundColor}
+              onChangeComplete={onChangeUpdateCardBackBackgroundColor}
+              style={colorPickerStyle}
+            />
+          </FormGroup>
+          <FormGroup>
+            <h3>Card back background image (overwrites color)</h3>
+            {cardBackgroundImage ? (
+              <CardBackPreview>
+                <CurrentBackgroundImage
+                  src={cardBackgroundImage}
+                  alt="Current background image"
+                />
+                <RemoveBackgroundImageButton>
+                  <Button
+                    variant="fab"
+                    color="secondary"
+                    aria-label="Remove"
+                    onClick={removeBackgroundImage}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </RemoveBackgroundImageButton>
+              </CardBackPreview>
+            ) : (
+              <Dropzone
+                accept={"image/jpeg, image/png"}
+                disablePreview={false}
+                multiple={false}
+                onDrop={onDropImageUpload}
+                name="uploadBackgroundImage"
+                title="Click to upload an image"
+                style={{
+                  width: "auto"
+                }}
+              />
+            )}
+          </FormGroup>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
   </Drawer>
 );
+
+const CardBackPreview = styled.div`
+  position: relative;
+  margin: 0.8rem;
+`;
+
+const CurrentBackgroundImage = styled.img`
+  max-width: 25.6rem;
+  height: auto;
+`;
+
+const RemoveBackgroundImageButton = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 const StyledSettingsPane = styled.div`
   position: absolute;
@@ -169,7 +225,10 @@ const StyledSettingsPane = styled.div`
 `;
 
 const colorPickerStyle = {
-  boxShadow: "none !important"
+  wrap: {
+    boxShadow: "0",
+    width: "100%"
+  }
 };
 
 export default SettingsPane;

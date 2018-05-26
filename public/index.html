@@ -6,10 +6,17 @@
   <meta http-equiv="x-ua-compatible" content="IE=Edge">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, minimum-scale=1.0">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#282828">
   <meta name="HandheldFriendly" content="true">
   <meta name="MobileOptimized" content="320">
   <meta http-equiv="cleartype" content="on">
+  <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker
+               .register('/sw.js')
+               .then(function() { console.log("Service Worker Registered"); });
+    }
+    </script>
   <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/

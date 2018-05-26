@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import * as actions from "../actionCreators";
 import SettingsPane from "../components/SettingsPane";
+import { onDropImageUpload } from "../utils/uploadImage";
 
 function mergeProps(stateProps, dispatchProps, ownProps) {
   const {
@@ -13,7 +14,10 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     updateBackgroundColor,
     updateCardBackBackgroundColor,
     updateCardFrontBackgroundColor,
-    updateCardFrontFontBackgroundColor
+    updateCardFrontFontBackgroundColor,
+    uploadBackgroundImage,
+    uploadBackgroundImageFailure,
+    removeBackgroundImage
   } = dispatchProps;
   const {
     numberOfCards,
@@ -28,6 +32,25 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     cardBackgroundImage,
     cardBackgroundColor
   } = stateProps;
+
+  const onDropImageUpload = acceptedFiles => {
+    acceptedFiles.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const fileAsBase64String = reader.result;
+        uploadBackgroundImage(fileAsBase64String);
+      };
+      reader.onabort = () => console.log("file reading was aborted");
+      reader.onerror = () => console.log("file reading has failed");
+
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const onRemoveBackgroundImage = event => {
+    event.stopPropagation();
+    removeBackgroundImage();
+  };
 
   return {
     isOpen: settingsPanelOpen,
@@ -51,7 +74,9 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
     cardFrontBackgroundColor,
     cardFrontFontColor,
     cardBackgroundImage,
-    cardBackgroundColor
+    cardBackgroundColor,
+    onDropImageUpload,
+    removeBackgroundImage
   };
 }
 

@@ -98,6 +98,16 @@ export default handleActions(
     ) => ({
       ...state,
       cardFrontFontColor: backgroundColor.hex
+    }),
+
+    [types.UPLOAD_BACKGROUND_IMAGE]: (state, { payload }) => ({
+      ...state,
+      cardBackgroundImage: payload
+    }),
+
+    [types.REMOVE_BACKGROUND_IMAGE]: state => ({
+      ...state,
+      cardBackgroundImage: undefined
     })
   },
 
