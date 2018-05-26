@@ -3,7 +3,7 @@
 /* A version number is useful when updating the worker logic,
    allowing you to remove outdated cache entries during the update.
 */
-var version = "v2::";
+var version = "v3::";
 
 /* These resources will be downloaded and cached by the service worker
    during the installation process. If any resource fails to be downloaded,
@@ -15,7 +15,7 @@ var offlineFundamentals = [
   "./index.html",
   "./manifest.json",
   "./static/css/main.4cd800d8.css",
-  "./static/js/main.0a121f7d.js",
+  "./static/js/main.a71d3bf0.js"
 }
 
 /* The install event fires when the service worker is first installed.

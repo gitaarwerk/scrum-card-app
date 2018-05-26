@@ -160,7 +160,7 @@ const SettingsPane = ({
           </FormGroup>
           <FormGroup>
             <h3>Card back background image (overwrites color)</h3>
-            {cardBackgroundImage ? (
+            {cardBackgroundImage !== undefined ? (
               <CardBackPreview>
                 <CurrentBackgroundImage
                   src={cardBackgroundImage}
